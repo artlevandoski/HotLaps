@@ -2885,11 +2885,35 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2012489691}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnAccelerateInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 750225ff-cfd7-443b-a15f-171483083b21
     m_ActionName: Main/Accelerate[/Keyboard/upArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2012489691}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnTurnInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9d20c090-68b1-4c96-a7e1-6e8793224729
     m_ActionName: Main/Turn[/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
@@ -2938,6 +2962,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372bfc812f4af314494ef380364be405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceleration: 50
+  turnSpeed: 100
+  carModel: {fileID: 311406983}
+  groundCheckRate: 0.05
+  rig: {fileID: 2012489690}
 --- !u!4 &2012489692
 Transform:
   m_ObjectHideFlags: 0
