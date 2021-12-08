@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    public List<CarController> cars = new List<CarController>();
+    public static GameManager instance; //this creates a singleton, so that this is able to be referred to anywhere in the project
 
-    // Update is called once per frame
-    void Update()
+    //use GameManager.* to access this script
+    
+    void Awake()
     {
-        
+        instance = this;
     }
 }
