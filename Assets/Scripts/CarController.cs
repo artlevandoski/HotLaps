@@ -29,7 +29,10 @@ public class CarController : MonoBehaviour
    //Update runs at the games fps
    void Update ()
    {
-       curYrot += turnInput * turnSpeed * Time.deltaTime; //uses Y axis to turn the car
+       float turnRate = Vector3.Dot(rig.velocity.normalized, carModel.forward); //determines the difficulty of turning
+       turnRate = Mathf.Abs(turnRate); //returns an absolute value on a negative axis
+
+       curYrot += turnInput * turnSpeed * turnRate * Time.deltaTime; //uses Y axis to turn the car
 
        carModel.position = transform.position + startModelOffset; //sets car model position
        carModel.eulerAngles = new Vector3(0, curYrot, 0); //sets rotation to not rotate with the car
