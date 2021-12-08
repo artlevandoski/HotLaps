@@ -24,6 +24,7 @@ public class CarController : MonoBehaviour
    void Start ()
    {
        startModelOffset = carModel.transform.localPosition; //local position of the car model
+       GameManager.instance.cars.Add(this);
    }
 
    //Update runs at the games fps
