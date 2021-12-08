@@ -35,7 +35,9 @@ public class CarController : MonoBehaviour
        curYrot += turnInput * turnSpeed * turnRate * Time.deltaTime; //uses Y axis to turn the car
 
        carModel.position = transform.position + startModelOffset; //sets car model position
-       carModel.eulerAngles = new Vector3(0, curYrot, 0); //sets rotation to not rotate with the car
+       //carModel.eulerAngles = new Vector3(0, curYrot, 0); //sets rotation to not rotate with the car
+
+       CheckGround();//calls check ground function to determine the cars rotation
    }
 
    //Fixed Update always runs at 60 times per second, this is good for physics calculations which unity uses
@@ -53,6 +55,24 @@ public class CarController : MonoBehaviour
             accelerateInput = true;
         else 
             accelerateInput = false;
+   }
+
+   void CheckGround()
+   {
+       //sets a point of origin from middle of sphere to ground and looks ahead to orient the rotation of the car model
+       Ray ray = new Ray (transform.position + new Vector3(0, -0.75f,0), Vector3.down);
+       RaycastHit hit;
+
+       if(Physics.Raycast(ray, out hit, 1.0f))
+       {
+           carModel.up = hit.normal;
+       }
+       else
+       {
+           carModel.up = Vector3.up;
+       }
+
+       carModel.Rotate(new Vector3(0, curYrot, 0), Space.Self); //maintains the same Y axis regardless of X axis
    }
 
    public void OnTurnInput (InputAction.CallbackContext context) //used to determine the variable of the turning negative or postive
