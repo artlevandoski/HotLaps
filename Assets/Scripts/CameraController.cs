@@ -8,6 +8,11 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float followSpeed;
     public float rotateSpeed;
+
+    void Start()
+    {
+        transform.parent = null; //disconnects camera from car upon game start 
+    }
     void Update()
     {
         // syncing the rotation and position of the camera and the car over time
