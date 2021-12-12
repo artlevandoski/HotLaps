@@ -40,7 +40,7 @@ public class CarController : MonoBehaviour
    void Update ()
    {
        if(!canControl)
-        return;
+        turnInput = 0.0f;
 
        float turnRate = Vector3.Dot(rig.velocity.normalized, carModel.forward); //determines the difficulty of turning
        turnRate = Mathf.Abs(turnRate); //returns an absolute value on a negative axis

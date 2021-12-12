@@ -8,6 +8,7 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI carPositionText;
     public CarController car;
     public TextMeshProUGUI countdownText;
+    public TextMeshProUGUI gameOverText;
 
     void Update()
         {
@@ -33,6 +34,13 @@ public class PlayerUI : MonoBehaviour
 
 
        } 
+    }
+
+    public void GameOver (bool Winner)
+    {
+        gameOverText.gameObject.SetActive(true);
+        gameOverText.color = Winner == true? Color.green : Color.red;
+        gameOverText.text = Winner == true? "You Win" : "You Lost";
     }
 
 

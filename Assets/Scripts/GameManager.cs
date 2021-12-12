@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public int playersToBegin = 2;
 
+    public int lapsToWin = 3;
+
     public bool gameStarted = false;
     public static GameManager instance; //this creates a singleton, so that this is able to be referred to anywhere in the project
 
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
 
         for(int x = 0; x < uis.Length; ++x)
             uis[x].StartCountdownDisplay();
+
         Invoke("BeginGame", 3.0f);
     }
 
@@ -76,5 +79,21 @@ public class GameManager : MonoBehaviour
 
         return aDist > bDist ? 1 : -1;
 
+    }
+
+    public void CheckIsWinner (CarController car)
+    {
+        if(car.curLap == lapsToWin + 1)
+        {
+            for(int x = 0; x < cars.Count; ++x)
+            {
+                cars[x].canControl = false;
+            }
+
+            PlayerUI[] uis = FindObjectsOfType<PlayerUI>();
+
+            for(int x = 0; x < uis.Length; ++x)
+            uis[x].GameOver(uis[x].car == car);
+        }
     }
 }
