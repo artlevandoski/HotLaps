@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
 
     void Update()
         {
+            //tracks car position and changed the interger to a string to display in car position text
             carPositionText.text = car.racePosition.ToString() + " / " + GameManager.instance.cars.Count.ToString();
         }
 
@@ -19,7 +20,7 @@ public class PlayerUI : MonoBehaviour
     {
        StartCoroutine (CountDown()); 
 
-       IEnumerator CountDown()
+       IEnumerator CountDown() //begins the countdown timer, from 3, pausing the function for 1 second between each
        {
            countdownText.gameObject.SetActive(true);
            countdownText.text = "3";
@@ -36,6 +37,7 @@ public class PlayerUI : MonoBehaviour
        } 
     }
 
+    //function that changes the game winner text color and winner for gamer over text
     public void GameOver (bool Winner)
     {
         gameOverText.gameObject.SetActive(true);

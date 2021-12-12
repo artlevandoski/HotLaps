@@ -11,12 +11,12 @@ public class TrackZone : MonoBehaviour
       {
           CarController car = other.GetComponent<CarController>();
           car.curTrackZone = this;
-          car.zonesPassed++;
+          car.zonesPassed++; // tracks the number of zones passed by each car to track position
 
           if(isGate)
           {
             car.curLap++;
-            GameManager.instance.CheckIsWinner(car);
+            GameManager.instance.CheckIsWinner(car); //checks which car is the winner of the race
           }
       }
   }

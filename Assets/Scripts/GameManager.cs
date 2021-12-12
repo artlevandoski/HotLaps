@@ -26,12 +26,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // used to update the car poistions on the track
         if(Time.time - lastPositionUpdateTime > positionUpdateRate)
         {
             lastPositionUpdateTime = Time.time;
             UpdateCarRacePositions();
         }
 
+        // starts the game if car count is equal to players to begin 
         if(!gameStarted && cars.Count == playersToBegin)
         {
             gameStarted = true;
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //begins the countdown display in PlayerUI once start countdown is triggered
+    // looks for all objects = to Player UI and displays the countdown
     void StartCountdown()
     {
         PlayerUI[] uis = FindObjectsOfType<PlayerUI>();
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
         Invoke("BeginGame", 3.0f);
     }
 
+    //once begin game is triggered this allows car control
     void BeginGame()
     {
         for(int x = 0; x < cars.Count; ++x)
@@ -58,6 +63,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //updates the car positions
     void UpdateCarRacePositions()
     {
         cars.Sort(SortPosition);
@@ -68,6 +74,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //determines car position based on zones passed
     int SortPosition (CarController a, CarController b)
     {
         if(a.zonesPassed > b.zonesPassed)
@@ -81,6 +88,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //determines winner after amount of laps (plus the first lap) is reached. Then runs the Game Over function
     public void CheckIsWinner (CarController car)
     {
         if(car.curLap == lapsToWin + 1)
