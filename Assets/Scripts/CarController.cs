@@ -16,6 +16,8 @@ public class CarController : MonoBehaviour
 
    private float curYrot;
 
+   public bool canControl;
+
    private bool accelerateInput;
    private float turnInput;
 
@@ -31,11 +33,15 @@ public class CarController : MonoBehaviour
    {
        startModelOffset = carModel.transform.localPosition; //local position of the car model
        GameManager.instance.cars.Add(this);
+       transform.position = GameManager.instance.spawnPoints[GameManager.instance.cars.Count - 1].position;
    }
 
    //Update runs at the games fps
    void Update ()
    {
+       if(!canControl)
+        return;
+
        float turnRate = Vector3.Dot(rig.velocity.normalized, carModel.forward); //determines the difficulty of turning
        turnRate = Mathf.Abs(turnRate); //returns an absolute value on a negative axis
 
@@ -50,6 +56,9 @@ public class CarController : MonoBehaviour
    //Fixed Update always runs at 60 times per second, this is good for physics calculations which unity uses
    void FixedUpdate ()
    {
+       if(!canControl)
+        return;
+
        if(accelerateInput == true)
        {
            rig.AddForce(carModel.forward * acceleration, ForceMode.Acceleration); //begins pushing the car model forward ignoring mass
